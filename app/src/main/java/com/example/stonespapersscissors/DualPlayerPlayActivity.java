@@ -125,16 +125,16 @@ public class DualPlayerPlayActivity extends AppCompatActivity {
                                 .setPositiveButton("Play Again", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
-                                        recreate();
+                                        System.exit(0);
 
                                     }
                                 })
-                                .setNegativeButton("Back", new DialogInterface.OnClickListener() {
+                               /* .setNegativeButton("Back", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         System.exit(0);
                                     }
-                                })
+                                })*/
                                 .show();
                     }
                 }

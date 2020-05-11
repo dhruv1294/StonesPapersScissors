@@ -9,8 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DualPlayerPlayActivity"></activity>
-        <activity android:name=".dualPlayerGameActivity" />
+        <activity android:name=".SinglePlayerPlayActivity"></activity>
+        <activity android:name=".SinglePlayerDetailsActivity"
+            android:noHistory="true"/>
+        <activity android:name=".DualPlayerPlayActivity" />
+        <activity
+            android:name=".DualPlayerDetailsActivity"
+            android:noHistory="true" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
