@@ -2,9 +2,13 @@ package com.example.stonespapersscissors;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.animation.ArgbEvaluator;
+import android.animation.ValueAnimator;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +22,7 @@ public class SinglePlayerPlayActivity extends AppCompatActivity {
     Button rockButton,paperButton,scissorButton,nextRoundButton;
     ImageView playerImage,compImage;
     String playerName;
+    ConstraintLayout constraintLayout;
     int rounds;
     int currentRound=1;
     int compChoice;
@@ -39,6 +44,7 @@ public class SinglePlayerPlayActivity extends AppCompatActivity {
         nextRoundButton=findViewById(R.id.nextSingleRoundButton);
         playerImage=findViewById(R.id.playerImage);
         compImage=findViewById(R.id.compImage);
+        constraintLayout = findViewById(R.id.constraintbg);
         Intent intent = getIntent();
         rounds = intent.getIntExtra("rounds",1);
         playerName = intent.getStringExtra("playerName");
@@ -83,8 +89,11 @@ public class SinglePlayerPlayActivity extends AppCompatActivity {
                         int winnerscore = playerScoreMarks > compScoreMarks ? playerScoreMarks : compScoreMarks;
                         if (winnerscore == playerScoreMarks) {
                             winner = playerName + " Wins!";
+                            playerWin();
+
                         } else {
-                            winner = playerName + " lose! Better Luck next time";
+                           playerLose();
+                            winner = playerName + " loses! Better Luck next time";
                         }
                     }
                         new AlertDialog.Builder(SinglePlayerPlayActivity.this)
@@ -128,22 +137,28 @@ public class SinglePlayerPlayActivity extends AppCompatActivity {
             playerImage.setImageDrawable(getResources().getDrawable(R.drawable.rock));
             if(compChoice==1){
                 compScoreMarks++;
+                playerLose();;
             }else if(compChoice==2){
                 playerScoreMarks++;
+                playerWin();
             }
         }else if(choice.equals("paper")){
             playerImage.setImageDrawable(getResources().getDrawable(R.drawable.paper));
             if(compChoice==0){
                 playerScoreMarks++;
+                playerWin();
             }else if(compChoice==2){
                 compScoreMarks++;
+                playerLose();
             }
         }else if(choice.equals("scissor")){
             playerImage.setImageDrawable(getResources().getDrawable(R.drawable.scissors));
             if(compChoice==0){
                 compScoreMarks++;
+                playerLose();
             }else if(compChoice==1){
                 playerScoreMarks++;
+                playerWin();
             }
         }
         playerScore.setText(playerName+":\n"+Integer.toString(playerScoreMarks));
@@ -154,5 +169,37 @@ public class SinglePlayerPlayActivity extends AppCompatActivity {
         playerImage.setVisibility(View.VISIBLE);
         compImage.setVisibility(View.VISIBLE);
 
+    }
+
+    public void playerWin(){
+        int colorFrom = Color.parseColor("#00ff00");
+        int colorTo = Color.parseColor("#FFAFBD");
+        ValueAnimator colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(), colorFrom, colorTo);
+        colorAnimation.setDuration(2500); // milliseconds
+        colorAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+
+            @Override
+            public void onAnimationUpdate(ValueAnimator animator) {
+                constraintLayout.setBackgroundColor((int) animator.getAnimatedValue());
+            }
+
+        });
+        colorAnimation.start();
+    }
+
+    public void playerLose(){
+        int colorFrom = Color.RED;
+        int colorTo = Color.parseColor("#FFAFBD");
+        ValueAnimator colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(), colorFrom, colorTo);
+        colorAnimation.setDuration(2500); // milliseconds
+        colorAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+
+            @Override
+            public void onAnimationUpdate(ValueAnimator animator) {
+                constraintLayout.setBackgroundColor((int) animator.getAnimatedValue());
+            }
+
+        });
+        colorAnimation.start();
     }
 }

@@ -70,7 +70,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
 
-            android:layout_marginBottom="70dp"
+            android:layout_marginBottom="50dp"
             android:layout_weight="1"
             android:background="@color/colorAccent"
 
@@ -78,8 +78,7 @@
             android:textAlignment="center"
             android:textSize="24sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"/>
-
+            app:layout_constraintBottom_toBottomOf="parent" />
 
 
         <Button
@@ -87,7 +86,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
 
-            android:layout_marginBottom="70dp"
+            android:layout_marginBottom="50dp"
             android:layout_weight="1"
             android:background="@color/colorAccent"
 
@@ -96,14 +95,14 @@
             android:textAllCaps="false"
             android:textSize="24sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent" />
 
         <Button
             android:id="@+id/scissorButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
 
-            android:layout_marginBottom="70dp"
+            android:layout_marginBottom="50dp"
             android:layout_weight="1"
             android:background="@color/colorAccent"
 
